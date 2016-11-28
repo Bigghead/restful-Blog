@@ -21,23 +21,29 @@ mongoose.connect('mongodb://localhost/coltBlogs');
 var blogSchema = new mongoose.Schema({
   title : String,
   image : String,
-  description: String
+  description: String,
+  created : {
+    type: Date,
+    default: Date.now
+  }
 });
 
 var Blogs = mongoose.model('blog', blogSchema);
 
-Blogs.create({
-  title: 'My First Post',
-  image : 'https://source.unsplash.com/random',
-  description : 'Trying out how this works'
-}, function(err, result){
-  if(err){
-    console.log(err);
-  } else {
-    console.log('Sucess');
-    console.log(result);
-  }
-});
+// Blogs.create({
+//   title: 'My First Post',
+//   image : 'https://images.unsplash.com/photo-1452698325353-b90e60289e87?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=',
+//   description : 'Trying out how this works'
+// }, function(err, result){
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log('Sucess');
+//     console.log(result);
+//   }
+// });
+
+//https://images.unsplash.com/photo-1452698325353-b90e60289e87?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -53,6 +59,10 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', function(req, res){
+  res.redirect('/blogs');
+});
+
+app.get('/blogs', function(req, res){
   Blogs.find({}, function(err, blogs){
     if(err){
       console.log(err);
@@ -60,7 +70,7 @@ app.get('/', function(req, res){
         res.render('index', {blogs: blogs});
     }
   });
-});
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
