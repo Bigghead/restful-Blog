@@ -77,6 +77,26 @@ app.get('/blogs/new', function(req, res){
   res.render('new');
 });
 
+//POST from NEW
+app.post('/blogs', function(req, res){
+  var name = req.body.blogTitle;
+  var image = req.body.blogImage;
+  var desc = req.body.blogDesc;
+
+  Blogs.create({
+    title: name,
+    image: image,
+    description: desc
+  }, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      console.log('Added ' + result.title);
+      res.redirect('/blogs');
+    }
+  });
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
