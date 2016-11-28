@@ -1,11 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+
+<% include partials/header %>
+<div class="container text-center">
+ <div class="jumbotron">
+   <h1>Welcome to a Noob Blog</h1>
+ </div>
+  <% blogs.forEach(function(blog){ %>
+   <div class='row'>
+     <div class="col-xs-12">
+       <div class="thumbnail">
+         <div class="caption text-center">
+         <h2><%= blog.title %></h2>
+         </div>
+         <img src=<%= blog.image %> alt="" />
+         <p>
+           <%= blog.description %>
+         </p>
+       </div>
+     </div>
+   </div>
+  <% }); %>
+
+
+  <% include partials/footer %>
