@@ -70,7 +70,20 @@ app.get('/blogs', function(req, res){
         res.render('index', {blogs: blogs});
     }
   });
-})
+});
+
+//SHOW ONE Route
+app.get('/blogs/:id', function(req, res){
+  var id = req.params.id;
+
+  Blogs.findById(id, function(err, foundBlog){
+    if(err){
+      console.log(err);
+    } else {
+      res.render('show', {foundBlog: foundBlog});
+    }
+  });
+});
 
 //NEW ROUTE
 app.get('/blogs/new', function(req, res){

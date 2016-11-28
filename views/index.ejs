@@ -11,7 +11,7 @@
          <div class="caption text-center">
          <h2><%= blog.title %></h2>
          </div>
-         <img src=<%= blog.image %> alt="" />
+         <a href='/blogs/<%= blog._id %>'><img src=<%= blog.image %> alt="" /></a>
          <p>
            <%= blog.description %>
          </p>
