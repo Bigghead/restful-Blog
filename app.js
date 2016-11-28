@@ -72,6 +72,11 @@ app.get('/blogs', function(req, res){
   });
 });
 
+//NEW ROUTE
+app.get('/blogs/new', function(req, res){
+  res.render('new');
+});
+
 //SHOW ONE Route
 app.get('/blogs/:id', function(req, res){
   var id = req.params.id;
@@ -83,11 +88,6 @@ app.get('/blogs/:id', function(req, res){
       res.render('show', {foundBlog: foundBlog});
     }
   });
-});
-
-//NEW ROUTE
-app.get('/blogs/new', function(req, res){
-  res.render('new');
 });
 
 //POST from NEW
