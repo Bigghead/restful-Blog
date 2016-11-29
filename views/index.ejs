@@ -14,7 +14,7 @@
         <a href='/blogs/<%= blog._id %>'><img src=<%= blog.image %> alt="" /></a>
         <div class='caption'>
         <p>
-         <%= blog.description %>
+         <%= blog.description.substring(0, 100) %>...
         </p>
         <p>Created On: <%= blog.created.toDateString() %></p>
         </div>
