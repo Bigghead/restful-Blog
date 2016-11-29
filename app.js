@@ -101,6 +101,13 @@ app.post('/blogs', function(req, res){
   var image = req.body.blogImage;
   var desc = req.body.blogDesc;
 
+  if(name === '' || name === null){
+    name = 'No Title';
+  }
+
+  if(image === '' || image === null){
+    image = 'https://images.unsplash.com/photo-1475770230762-6409e81d7589?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=';
+  }
   Blogs.create({
     title: name,
     image: image,
