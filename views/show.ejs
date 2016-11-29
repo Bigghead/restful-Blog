@@ -1,14 +1,19 @@
 <% include partials/header %>
 <div class="container">
-  <div class="thumbnail">
-    <div class="caption text-center">
-    <h2><%= foundBlog.title %></h2>
-    </div>
-    <img style='width: 50%, heigth: 50%;'src=<%= foundBlog.image %> alt="" />
-    <p>
-      <%= foundBlog.description %>
-    </p>
-  </div>
+  <div class='row'>
+  <div class='col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2'>
+     <div class="thumbnail">
+       <div class="caption text-center">
+       <h2><%= foundBlog.title %></h2>
+       </div>
+       <a href='/blogs/<%= foundBlog._id %>'><img src=<%= foundBlog.image %> alt="" /></a>
+       <p>
+         <%= foundBlog.description %>
+       </p>
+       <p>Created On: <%= foundBlog.created.toDateString() %></p>
+     </div>
+     </div>
+     </div>
 </div>
 
 <% include partials/footer %>

@@ -1,24 +1,28 @@
 
 <% include partials/header %>
-<div class="container text-center">
- <div class="jumbotron">
-   <h1>Welcome to a Noob Blog</h1>
- </div>
+<div class='container'>
+  <div class="jumbotron">
+    <h1>Welcome to a Noob Blog</h1>
+  </div>
   <% blogs.forEach(function(blog){ %>
-   <div class='row'>
-     <div class="col-xs-12">
-       <div class="thumbnail">
-         <div class="caption text-center">
-         <h2><%= blog.title %></h2>
-         </div>
-         <a href='/blogs/<%= blog._id %>'><img src=<%= blog.image %> alt="" /></a>
-         <p>
-           <%= blog.description %>
-         </p>
+    <div class='row'>
+     <div class='col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2'>
+      <div class="thumbnail">
+       <div class="caption text-center">
+        <h2><%= blog.title %></h2>
        </div>
-     </div>
-   </div>
-  <% }); %>
+        <a href='/blogs/<%= blog._id %>'><img src=<%= blog.image %> alt="" /></a>
+        <div class='caption'>
+        <p>
+         <%= blog.description %>
+        </p>
+        <p>Created On: <%= blog.created.toDateString() %></p>
+        </div>
+       </div>
+      </div>
+    </div>
+    <% }); %>
+  </div>
 
 
   <% include partials/footer %>
