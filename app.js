@@ -102,7 +102,6 @@ app.post('/blogs', function(req, res){
   var name = req.body.blogTitle;
   var image = req.body.blogImage;
   var desc = req.sanitize(req.body.blogDesc);
-  console.log(desc);
 
   if(name === '' || name === null){
     name = 'No Title';
@@ -144,7 +143,7 @@ app.put('/blogs/:id', function(req, res){
   var id = req.params.id;
   var name = req.body.blogTitle;
   var image = req.body.blogImage;
-  var desc = req.body.blogDesc;
+  var desc = req.sanitize(req.body.blogDesc);
 
   //  Blogs.findByIdAndUpdate(id, newData, callback);
   Blogs.findByIdAndUpdate(id, {
