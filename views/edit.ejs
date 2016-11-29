@@ -4,7 +4,7 @@
   <h1 class='text-center'>Edit <%= foundBlog.title%></h1>
   <div class='row'>
     <div style='width: 50%; margin: 25px auto;'>
-      <form class="" action="/blogs/<%= foundBlog._id%>" method="PUT">
+      <form class="" action="/blogs/<%= foundBlog._id%>?_method=PUT" method="post">
         <div class="form-group">
           <input class='form-control' type="text" name="blogTitle" value='<%= foundBlog.title %>'>
         </div>

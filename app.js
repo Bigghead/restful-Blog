@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var methodOverride = require('method-override');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -48,6 +49,10 @@ var Blogs = mongoose.model('blog', blogSchema);
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // app.use(logger('dev'));
+
+//method override will override a post into another (put or delete)
+//it takes in an argument, which is the query string it looks for as an override
+app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -126,11 +131,25 @@ app.get('/blogs/:id/edit', function(req, res){
 
 //UPDATE ROUTE
 app.put('/blogs/:id', function(req, res){
+  var id = req.params.id;
   var name = req.body.blogTitle;
   var image = req.body.blogImage;
   var desc = req.body.blogDesc;
 
-  res.send('Updated!');
+  //  Blogs.findByIdAndUpdate(id, newData, callback);
+  Blogs.findByIdAndUpdate(id, {
+    title: name,
+    image: image,
+    description: desc
+  }, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      console.log('Successfully Updated!');
+      //redirect back to whereever get route you want
+      res.redirect('/blogs');
+    }
+  });
 });
 
 
