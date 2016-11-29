@@ -152,20 +152,27 @@ app.put('/blogs/:id', function(req, res){
   });
 });
 
-app.get('/blogs/:id/delete', function(req, res){
-  Blogs.findById(req.params.id, function(err, result){
+// app.get('/blogs/:id/delete', function(req, res){
+//   Blogs.findById(req.params.id, function(err, result){
+//     if(err){
+//       console.log(err);
+//     } else {
+//       console.log(result);
+//       res.send('DELETE GET');
+//     }
+//   });
+// });
+//DELETE ROUTE
+app.delete('/blogs/:id', function(req, res){
+  var id = req.params.id;
+  Blogs.findOneAndRemove({'_id': id}, function(err, result){
     if(err){
       console.log(err);
     } else {
-      console.log(result);
-      res.send('DELETE GET');
+      res.redirect('/blogs');
     }
   });
 });
-//DELETE ROUTE
-// app.delete('/blogs/:id', function(req, res){
-//   res.send('Destroyed');
-// });
 
 
 // catch 404 and forward to error handler
