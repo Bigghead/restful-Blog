@@ -16,7 +16,9 @@
     </div>
   <div class='text-center'>
     <a href="/blogs/<%= foundBlog._id %>/edit" class='btn btn-info'>Edit</a>
-    <a href="/blogs/<%= foundBlog._id %>/delete" class='btn btn-danger'>Delete</a>
+    <form style='display: inline-block;' action="/blogs/<%= foundBlog._id %>?_method=DELETE" method="post">
+      <button class='btn btn-danger' type="submit" name="button">Delete</button>
+    </form>
   </div>
 </div>
 

@@ -163,7 +163,7 @@ app.get('/blogs/:id/delete', function(req, res){
   });
 });
 //DELETE ROUTE
-// app.delete('/blogs/:id/delete', function(req, res){
+// app.delete('/blogs/:id', function(req, res){
 //   res.send('Destroyed');
 // });
 
