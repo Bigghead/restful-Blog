@@ -113,7 +113,24 @@ app.post('/blogs', function(req, res){
 
 //EDIT ROUTE
 app.get('/blogs/:id/edit', function(req, res){
-  res.render('edit');
+  var id = req.params.id;
+
+  Blogs.findById(id, function(err, foundBlog){
+    if(err){
+      console.log(err);
+    } else {
+      res.render('edit', {foundBlog: foundBlog});
+    }
+  });
+});
+
+//UPDATE ROUTE
+app.put('/blogs/:id', function(req, res){
+  var name = req.body.blogTitle;
+  var image = req.body.blogImage;
+  var desc = req.body.blogDesc;
+
+  res.send('Updated!');
 });
 
 

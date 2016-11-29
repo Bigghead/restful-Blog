@@ -1,5 +1,26 @@
 <% include partials/header %>
 
-
+<div class='container'>
+  <h1 class='text-center'>Edit <%= foundBlog.title%></h1>
+  <div class='row'>
+    <div style='width: 50%; margin: 25px auto;'>
+      <form class="" action="/blogs/<%= foundBlog._id%>" method="PUT">
+        <div class="form-group">
+          <input class='form-control' type="text" name="blogTitle" value='<%= foundBlog.title %>'>
+        </div>
+        <div class="form-group">
+          <input class='form-control' type="text" name="blogImage" value=<%= foundBlog.image %>>
+        </div>
+        <div class="form-group">
+          <label>Ramble Down Here:</label>
+          <textarea name="blogDesc" rows="4" cols="80"><%= foundBlog.description %></textarea>
+        </div>
+        <div class='form-group text-center'>
+          <button class='btn btn-info btn-lg'type="submit" name="button">Submit A New Blog</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <% include partials/footer %>
