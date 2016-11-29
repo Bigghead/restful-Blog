@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
+var expressSanitizer = require('express-sanitizer');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -56,6 +57,7 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressSanitizer());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
@@ -99,7 +101,8 @@ app.get('/blogs/:id', function(req, res){
 app.post('/blogs', function(req, res){
   var name = req.body.blogTitle;
   var image = req.body.blogImage;
-  var desc = req.body.blogDesc;
+  var desc = req.sanitize(req.body.blogDesc);
+  console.log(desc);
 
   if(name === '' || name === null){
     name = 'No Title';
