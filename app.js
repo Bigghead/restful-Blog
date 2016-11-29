@@ -152,6 +152,21 @@ app.put('/blogs/:id', function(req, res){
   });
 });
 
+app.get('/blogs/:id/delete', function(req, res){
+  Blogs.findById(req.params.id, function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      console.log(result);
+      res.send('DELETE GET');
+    }
+  });
+});
+//DELETE ROUTE
+// app.delete('/blogs/:id/delete', function(req, res){
+//   res.send('Destroyed');
+// });
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
